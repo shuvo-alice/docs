@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "MyAlice Developer Documentation",
+  "name": "Developer Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -17,13 +17,13 @@
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:support@myalice.ai"
+      "name": "Sign In",
+      "url": "https://app.myalice.ai/"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://app.myalice.ai"
+    "name": "Sign Up",
+    "url": "https://app.myalice.ai/register"
   },
   "tabs": [],
   "anchors": [
@@ -38,9 +38,9 @@
       "url": "https://mintlify.com/community"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://myalice.ai/blogs"
+      "name": "Support",
+      "icon": "phone",
+      "url": "mailto:support@myalice.ai"
     }
   ],
   "navigation": [
