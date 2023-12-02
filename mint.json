@@ -46,14 +46,14 @@
   "navigation": [
     {
       "group": "API Documentation",
-      "pages": ["introduction"]
+      "pages": ["api-reference/introduction"]
     },
     {
       "group": "Endpoint Examples",
       "pages": [
-        "endpoint/get",
-        "endpoint/create",
-        "endpoint/delete"
+        "api-reference/endpoint/get",
+        "api-reference/endpoint/create",
+        "api-reference/endpoint/delete"
       ]
     }
   ],
