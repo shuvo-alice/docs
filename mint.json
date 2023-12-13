@@ -5,7 +5,7 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo/favicon.svg",
   "colors": {
     "primary": "#00BD56",
     "light": "#FFDA54",
@@ -28,14 +28,14 @@
   "tabs": [],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Product Documentation",
       "icon": "book-open-cover",
-      "url": "https://docs.myalice.ai"
+      "url": "https://docs.myalice.ai/"
     },
     {
-      "name": "Community",
-      "icon": "facebook",
-      "url": "https://mintlify.com/community"
+      "name": "API Reference",
+      "icon": "code",
+      "url": "/"
     },
     {
       "name": "Support",
@@ -45,21 +45,50 @@
   ],
   "navigation": [
     {
-      "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
+      "group": "Introduction",
+      "pages": ["introduction"]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "REST API",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+          {
+            "group": "WhatsApp",
+            "pages": [
+              "endpoint/get",
+              "endpoint/create",
+              "endpoint/delete"
+            ]
+          },
+          {
+            "group": "Messages",
+            "pages": [
+              "endpoint/get",
+              "endpoint/create",
+              "endpoint/delete"
+            ]
+        },
+        {
+          "group": "Customer",
+          "pages": [
+            "endpoint/get",
+            "endpoint/create",
+            "endpoint/delete"
+          ]
+      }
+      ]
+    },
+    {
+      "group": "Webhooks",
+      "pages": [
+        "webhook/overview",
+        "webhook/setup",
+        "webhook/payload"
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/myaliceai",
+    "facebook": "https://www.facebook.com/myaliceai",
+    "linkedin": "https://www.linkedin.com/company/myaliceai"
   }
 }

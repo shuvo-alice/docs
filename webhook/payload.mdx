@@ -1,0 +1,268 @@
+---
+title: 'Event Payload'
+description: 'Once an event triggers and you have a Webhook set up for that event, you will get a POST request at your backend URL'
+---
+
+## Ticket Create
+Triggers when a ticket is created in MyAlice
+```json
+{
+    "action": "ticket_created",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {
+        "id": 8192170,
+        "is_replied": false,
+        "is_resolved": false,
+        "conversation_text": "ticket",
+        "created_at": "1670078420",
+        "assigned_agent": null,
+        "assigned_group": null,
+        "resolved_by": null,
+        "tags": []
+    }
+}
+```
+
+## Ticket Resolve
+Triggers when a ticket is resolved in MyAlice
+```json
+# TICKET RESOLVED
+{
+    "action": "ticket_resolved",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {
+        "id": 8192170,
+        "is_replied": false,
+        "is_resolved": true,
+        "conversation_text": "ticket",
+        "created_at": "1670078420",
+        "assigned_agent": null,
+        "assigned_group": null,
+        "resolved_by": {
+            "id": 7,
+            "email": "shuvo.rahman@getalice.ai",
+            "avatar": "https://s3-ap-southeast-1.amazonaws.com/myalice-live-public-bucket/misc/4139d5dcf00d11ec8f28a6f391d1c6fd.png",
+            "full_name": "Shuvo Rahman",
+            "status": "online"
+        },
+        "tags": []
+    }
+}
+```
+
+## Ticket Tag
+Triggers when a ticket is tagged in MyAlice
+```json
+{
+    "action": "ticket_tagged",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {
+        "id": 8192573,
+        "is_replied": true,
+        "is_resolved": false,
+        "conversation_text": "",
+        "created_at": "1670079237",
+        "assigned_agent": {
+            "id": 7,
+            "email": "shuvo.rahman@getalice.ai",
+            "avatar": "https://s3-ap-southeast-1.amazonaws.com/myalice-live-public-bucket/misc/4139d5dcf00d11ec8f28a6f391d1c6fd.png",
+            "full_name": "Shuvo Rahman",
+            "status": "online"
+        },
+        "assigned_group": null,
+        "resolved_by": null,
+        "tags": [
+            {
+                "id": 2909,
+                "name": "Test Tag"
+            }
+        ]
+    }
+}
+```
+
+## Ticket Reopen
+Triggers when a ticket is reopened in MyAlice
+```json
+{
+    "action": "ticket_reopened",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {
+        "id": 8192170,
+        "is_replied": false,
+        "is_resolved": true,
+        "conversation_text": "ticket",
+        "created_at": "1670078420",
+        "assigned_agent": null,
+        "assigned_group": null,
+        "reopened_by": {
+            "id": 7,
+            "email": "shuvo.rahman@getalice.ai",
+            "avatar": "https://s3-ap-southeast-1.amazonaws.com/myalice-live-public-bucket/misc/4139d5dcf00d11ec8f28a6f391d1c6fd.png",
+            "full_name": "Shuvo Rahman",
+            "status": "online"
+        },
+        "tags": []
+    }
+}
+```
+
+## Customer Create
+Triggers when a customer is created in MyAlice
+```json
+{
+    "action": "customer_created",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {}
+}
+```

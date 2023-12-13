@@ -1,0 +1,33 @@
+---
+title: 'Overview'
+description: 'Webhooks are essentially user-defined HTTP callbacks that enable the reception of event-driven notifications. This mechanism allows for real-time information retrieval as soon as events occur, forming the foundation for a robust two-way communication system at the users end.'
+---
+
+![Webhook in MyAlice](https://3820235078-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-MgzCdF2XNgHNO9_KQDe%2F-MiM2QL2IlYpLMeMjfxQ%2F-MiM2fChhL-mVuXuSzWq%2FScreenshot%202021-05-25%20at%207.56.28%20PM.png?alt=media&token=bb7c0e53-c51f-4763-af7d-a135da01ae16)
+
+The concept of webhooks revolves around event reactions, eliminating the need for constant polling of the server-side application by the client-side application. Instead of the client-side application continuously polling the server-side application for new events, the server-side application initiates communication by calling the client-side application through a provided webhook URL whenever there is new information to convey.
+
+## Webhook vs. API
+In API calls, the server-side application supplies the client-side application with endpoint URLs that the latter can invoke. With webhooks, the client-side application furnishes the server-side application with a URL to call. The server-side application then invokes this URL when a relevant event occurs on its end. In essence, a webhook is an endpoint URL provided by the client-side application for the server-side application.
+
+```
+{ "url": "https://yoursite.com" }
+```
+## When is a webhook necessary?
+Consider a scenario where you want MyAlice to notify you whenever your account's WhatsApp number receives a new message from a customer. By registering a webhook for the incoming message event, MyAlice will call your specified URL with message details whenever a new message arrives.
+
+## Supported Events
+Currently, these events are supported in Webhook:
+- Ticket Create
+- Ticket Resolve
+- Ticket Tag
+- Ticket Reopen
+- Customer Create
+
+## Use cases
+
+- Integration of a custom chatbot
+- Integration with other systems, e.g., CRM
+
+## Is a webhook essential?
+If you are utilizing the MyAlice Web Application for two-way communication, a webhook may not be necessary. In fact, depending on your customer base size, it is advisable to explore the web application's features before considering independent solutions. This prevents the possibility of reinventing the wheel for your specific needs.
