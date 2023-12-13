@@ -10,38 +10,38 @@
   },
   "servers": [
     {
-      "url": "http://api.myalice.ai"
+      "url": "https://api.myalice.ai"
     }
   ],
   "security": [
     {
-      "bearerAuth": []
+      "ApiKeyAuth": []
     }
   ],
   "paths": {
     "/stable/open/whatsapp/send-template-message": {
       "post": {
         "description": "Sends a per-approved template message to WhatsApp",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "description": "WhatsApp Template to send",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTemplate"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Successful operation",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "$ref": "#/components/schemas/SuccessSendTemplate"
                   }
                 }
               }
@@ -56,72 +56,13 @@
                 }
               }
             }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
           },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
+          "401": {
+            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/Unauth"
                 }
               }
             }
@@ -132,63 +73,176 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
+      "SendTemplate": {
         "required": [
-          "name"
+          "template_id",
+          "channel_id",
+          "customer_phone"
         ],
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
+          "template_id": {
+            "description": "The Id of the Template, can be found in MyAlice Dashboard",
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
+          "channel_id": {
+            "description": "The Id of the WhatsApp Channel, can be found in MyAlice Dashboard",
             "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
           },
-          {
-            "required": [
-              "id"
-            ],
+          "customer_phone": {
+            "description": "Customer phone with country code, e.g. +628123456789",
+            "type": "string"
+          },
+          "attributes": {
+            "description": "Key-pair values of the variables in the template",
             "type": "object",
             "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
+              "1": {
+                "description": "Atttribute in the Template",
+                "type": "string"
+              }
+            }
+          },
+          "attachment": {
+            "description": "Key-pair values of the variables in the template",
+            "type": "object",
+            "properties": {
+              "image|audio|video|document": {
+                "description": "URL of the attachment, must be publicly accessible",
+                "type": "string",
+                "format": "uri"
               }
             }
           }
-        ]
+        }
+      },
+      "SuccessSendTemplate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "project_id": {
+            "type": "integer"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "function_name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "extra": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "string"
+              },
+              "project_id": {
+                "type": "integer"
+              },
+              "platform_id": {
+                "type": "integer"
+              },
+              "customer_id": {
+                "type": "integer"
+              },
+              "customer_phone": {
+                "type": "string"
+              },
+              "template_id": {
+                "type": "string"
+              },
+              "template_name": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "success": {
+                "type": "boolean"
+              },
+              "report": {
+                "type": "object",
+                "properties": {
+                  "messaging_product": {
+                    "type": "string"
+                  },
+                  "contacts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "input": {
+                          "type": "string"
+                        },
+                        "wa_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "messages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "message_status": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "Error": {
         "required": [
           "error",
-          "message"
+          "code",
+          "success"
         ],
         "type": "object",
         "properties": {
           "error": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           },
-          "message": {
+          "code": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Unauth": {
+        "required": [
+          "detail"
+        ],
+        "type": "object",
+        "properties": {
+          "detail": {
             "type": "string"
           }
         }
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Myalice-Api-Key"
       }
     }
   }

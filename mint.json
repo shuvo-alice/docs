@@ -51,30 +51,12 @@
     {
       "group": "REST API",
       "pages": [
-          {
-            "group": "WhatsApp",
-            "pages": [
-              "endpoint/get",
-              "endpoint/create",
-              "endpoint/delete"
-            ]
-          },
-          {
-            "group": "Messages",
-            "pages": [
-              "endpoint/get",
-              "endpoint/create",
-              "endpoint/delete"
-            ]
-        },
         {
-          "group": "Customer",
+          "group": "WhatsApp",
           "pages": [
-            "endpoint/get",
-            "endpoint/create",
-            "endpoint/delete"
+            "endpoint/create"
           ]
-      }
+        }
       ]
     },
     {
