@@ -69,8 +69,156 @@
           }
         }
       }
+    }, 
+    "/stable/open/whatsapp/get-platform-list": {
+      "get": {
+        "description": "Get the list of whatsapp platform associated with a MyAlice team",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Channel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stable/open/whatsapp/get-template-list": {
+      "get": {
+        "description": "Get the list of whatsapp templates associated with a platform",
+        "parameters": [
+          {
+            "name": "platform_id",
+            "in": "query",
+            "description": "The Id of the WhatsApp Platform, can be found in MyAlice Dashboard or with API",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Template"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stable/open/whatsapp/get-template-detail": {
+      "get": {
+        "description": "Get the list of whatsapp templates associated with a platform",
+        "parameters": [
+          {
+            "name": "platform_id",
+            "in": "query",
+            "description": "The Id of the WhatsApp Platform, can be found in MyAlice Dashboard or with API",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "template_id",
+            "in": "query",
+            "description": "The Template Id of the Template, can be found in MyAlice Dashboard or with API",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Template"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          }
+        }
+      }
     }
-  },
+  }, 
   "components": {
     "schemas": {
       "SendTemplate": {
@@ -207,6 +355,114 @@
           }
         }
       },
+      "Channel": {
+        "required": [
+          "id",
+          "title",
+          "number"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string",
+            "example": "MyAlice WhatsApp Channel"
+          },
+          "number": {
+            "type": "string",
+            "format": "phone",
+            "example": "+628 1234 56789"
+          }
+        }
+      },
+      "Template": {
+        "required": [
+          "id",
+          "name",
+          "status",
+          "body",
+          "header",
+          "footer",
+          "buttons",
+          "attributes"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "example": "submit_feedback"
+          },
+          "body": {
+            "type": "string",
+            "example": "Hi {{1}}, please submit your feedback for our service"
+          },
+          "header": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text",
+                  "image",
+                  "video",
+                  "document"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "example": "Submit Feedback"
+              }
+            }
+          },
+          "footer": {
+            "type": "string",
+            "example": "Powered by MyAlice"
+          },
+          "buttons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "url",
+                    "sequence"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Submit Feedback"
+                },
+                "value": {
+                  "type": "string",
+                  "example": "Submit Feedback"
+                }
+              }
+            }
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "attribute": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        }
+      },
       "Error": {
         "required": [
           "error",
@@ -233,7 +489,8 @@
         "type": "object",
         "properties": {
           "detail": {
-            "type": "string"
+            "type": "string",
+            "example": "Invalid api key provided."
           }
         }
       }

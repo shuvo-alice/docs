@@ -54,7 +54,10 @@
         {
           "group": "WhatsApp",
           "pages": [
-            "endpoint/create"
+            "rest-api/send-whatsapp-template",
+            "rest-api/get-whatsapp-channels",
+            "rest-api/get-whatsapp-templates",
+            "rest-api/get-whatsapp-template-details"
           ]
         }
       ]
