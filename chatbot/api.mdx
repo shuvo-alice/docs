@@ -1,0 +1,179 @@
+---
+title: 'Integration'
+description: 'When you want to provide users with information stored on your server, you can easily do so through our API Integration module.'
+---
+## Step - 1: Create an API
+<Steps>
+  <Step title="Create New API">
+    Refer to the Integration tab from Dashboard Sidebar and click on Add New API (Provide a name to the API as applicable for future reference).
+  </Step>
+  <Step title="Select Method">
+    You can select two types of methods:<br />
+**GET Method**: You should select this if you don't want all the customer data. Here you can add a header and a parameter to your API.<br />
+**POST Method**: You should select this if you want all the customer data. You will get the information of the customer that has triggered this. You can add a header and additional parameters to your API as well.
+  </Step>
+  <Step title="Select Output Type">
+    You can show the desired data through different blocks:
+<br />**Text Block**: Data is shown as plain text.
+<br />**Image Block**: Data is shown as an image.
+<br />**Gallery Block**: Data is shown in the form of a Gallery carousel (best suited to showcase products).
+<br />**Button Block**: Data is shown in the form of buttons for users to press and access.
+<br />**Quick Reply Block**: Data is shown on the floating buttons for users to press and access.
+  </Step>
+</Steps>
+
+<Tip>Always use a secret header token to protect your API end from unwanted usage.</Tip>
+
+
+## Step - 2: Call the API in Chatbot Builder 
+<Steps>
+  <Step title="Create a Sequence">
+    Create a Sequence from the Builder.
+  </Step>
+  <Step title="Create a Block">
+    Add the necessary Block in the Sequence.
+  </Step>
+  <Step title="Call API in the Block">
+**Text Block**: When you add a `Text Block` use `<<` on the text field and you'll see a list of all the APIs you have created. Select the desired one.
+<br />**Image Block**: When you add an `Image Block`, you'll see the option `Create an API image block`. Click it and you’ll see the list of APIs. Select the suitable one.
+<br />**Gallery Block**: When you add a `Gallery Block`, you’ll see the option `Create an API Gallery Item`. Press on it and you’ll see the list of APIs. Select the suitable one.
+<br />**Button Block**: When you add a `Button Block`, you’ll see the option `Create an API button`. Press on it and you’ll see the list of APIs. Select the suitable one.
+<br />**Quick Reply Block**: When you add a `Quick Reply Block`, you'll see the option `Create an API button`. Press on it and you'll see the list of APIs. Select the suitable one.
+  </Step>
+</Steps>
+
+## Step - 3: Receive data at your API Endpoint
+
+If you use a POST request, your API endpoint will receive the following data of the customer who triggered the API:
+```json
+{
+    "uid": 1, #unique customer id
+    "platform_id": 1, #id of the channel
+    "bot_enabled": true|false,
+    "avatar": "" # url,
+    "first_name": "Lorem",
+    "last_name": "Ipsum",
+    "full_name": "Lorem Ipsum",
+    "gender": "male|female",
+    "timezone": 6.0,
+    "locale": "",
+    "language": "",
+    "phone": "",
+    "email": "",
+    "created_at": "2020-10-16 06:41:59.039735+00:00", 
+    "last_message_text": "", # User's last message
+    "last_message_time": "",
+    ...
+    # Key-Value pair depending on the saved attributes of that customer
+}
+```
+
+<Info>To get API request in your backend, you need to connect the channel.</Info>
+
+## Step - 4: Return Data in the API response
+To trigger any specific block in response, return data in the following structure:
+
+<Warning>You need to return the data within 5 seconds.</Warning>
+
+<Tabs>
+  <Tab title="Text Block">
+```json
+{
+    "data": "text", # string - this will contain the actual data
+    "success": true/false, # boolean
+    "message": "Successful", # string - this can be used for keeping logs
+    "attributes": {
+        # optional key-value pair to save in customer data
+    },
+    "status": 200 # integer
+}
+```
+  </Tab>
+  <Tab title="Image Block">
+```json
+{
+    "data": {
+      "type": "image" | "audio" | "video", # string
+      "url": "https://amazon.com/pic.png" # string url (jpg or png preferred)
+    }, # - this will contain the actual data
+    "success": true/false, # boolean
+    "message": "Successful", # string - this can be used for keeping logs
+    "attributes": {
+        # optional key-value pair to save in customer data
+    },
+    "status": 200 # integer
+}
+```
+  </Tab>
+  <Tab title="Button Block">
+```json
+{
+    "data": [
+        {
+            "title": "Hello World", # string - button title
+            "type": "url", # string - "sequence"/"url"/"phone"
+            "extra": "movie_id=123&name=alice", # string (optional) with key value pairs
+            "value": "https://getalice.ai/", # value of the button i.e. url, sequence_id
+        },...
+    ]
+    "success": true/false, # boolean
+    "message": "Successful", # string
+    attributes": {
+        # optional key-value pair to save in customer data
+    },
+    "status": 200 # integer
+}
+```
+  </Tab>
+  <Tab title="Quick Reply Block">
+```json
+{
+    "data": [
+        {
+            "title": "Hello World", # string - button title
+            "type": "sequence", # string - "sequence"
+            "extra": "movie_id=123&name=alice", # string (optional) with key value pairs
+            "value": 8082, # value of the button i.e. sequence_id
+        },...
+    ]
+    "success": true/false, # boolean
+    "message": "Successful", # string
+    attributes": {
+        # optional key-value pair to save in customer data
+    },
+    "status": 200 # integer
+}
+```
+  </Tab>
+  <Tab title="Gallery Block">
+```json
+{
+    "data": [
+        {
+            "title": "Hello World", # string - gallery title
+            "subtitle: "Hello World", # string - gallery item subtitle
+            "image": "" # image url (optional)
+            "url": "" # redirection url (optional)
+            "buttons": [
+                {
+                    "title": "Hello World", # string - button title
+                    "type": "url", # string - "sequence"/"url"
+                    "extra": "movie_id=123&name=alice", # string (optional) with key value pairs
+                    "value": "https://getalice.ai/", # value of the button i.e. url, sequence_id
+                }, ...
+            ]    
+        }, ...
+    ]
+    "success": true/false, # boolean
+    "message": "Successful", # string
+    attributes": {
+        # optional key-value pair to save in customer data
+    },
+    "status": 200 # integer
+}
+```
+  </Tab>
+</Tabs>
+
+<Info>If you want to use newline in data, use \n</Info>
+

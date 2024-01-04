@@ -231,15 +231,18 @@
         "properties": {
           "template_id": {
             "description": "The Id of the Template, can be found in MyAlice Dashboard",
-            "type": "string"
+            "type": "string",
+            "example": "102323213"
           },
           "channel_id": {
             "description": "The Id of the WhatsApp Channel, can be found in MyAlice Dashboard",
-            "type": "string"
+            "type": "string",
+            "example": "1022"
           },
           "customer_phone": {
-            "description": "Customer phone with country code, e.g. +628123456789",
-            "type": "string"
+            "description": "Customer phone with country code",
+            "type": "string",
+            "example": "+628123456789"
           },
           "attributes": {
             "description": "Key-pair values of the variables in the template",
@@ -247,7 +250,8 @@
             "properties": {
               "1": {
                 "description": "Atttribute in the Template",
-                "type": "string"
+                "type": "string",
+                "example": "John Doe"
               }
             }
           },
@@ -255,10 +259,29 @@
             "description": "Key-pair values of the variables in the template",
             "type": "object",
             "properties": {
-              "image|audio|video|document": {
-                "description": "URL of the attachment, must be publicly accessible",
+              "image": {
+                "description": "URL of the attachment, must be publicly accessible. Only use if the header is of type image",
                 "type": "string",
-                "format": "uri"
+                "format": "uri",
+                "example": "https://myalice.ai/attachment.jpg"
+              },
+              "audio": {
+                "description": "URL of the attachment, must be publicly accessible. Only use if the header is of type audio",
+                "type": "string",
+                "format": "uri",
+                "example": "https://myalice.ai/attachment.mp3"
+              },
+              "video": {
+                "description": "URL of the attachment, must be publicly accessible. Only use if the header is of type video",
+                "type": "string",
+                "format": "uri",
+                "example": "https://myalice.ai/attachment.mp4"
+              },
+              "document": {
+                "description": "URL of the attachment, must be publicly accessible. Only use if the header is of type document",
+                "type": "string",
+                "format": "uri",
+                "example": "https://myalice.ai/attachment.pdf"
               }
             }
           }

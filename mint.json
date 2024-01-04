@@ -33,9 +33,9 @@
       "url": "https://docs.myalice.ai/"
     },
     {
-      "name": "API Reference",
+      "name": "Roadmap",
       "icon": "code",
-      "url": "/"
+      "url": "https://roadmap.myalice.ai/"
     },
     {
       "name": "Support",
@@ -68,6 +68,12 @@
         "webhook/overview",
         "webhook/setup",
         "webhook/payload"
+      ]
+    },
+    {
+      "group": "Chatbot with API",
+      "pages": [
+        "chatbot/api"
       ]
     }
   ],
