@@ -39,10 +39,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SuccessSendTemplate"
-                  }
+                  "$ref": "#/components/schemas/SuccessSendTemplate"
                 }
               }
             }
@@ -69,7 +66,103 @@
           }
         }
       }
-    }, 
+    },
+    "/stable/open/customers/send-text-message": {
+      "post": {
+        "description": "Sends a text message to a MyAlice customer in any platform",
+        "requestBody": {
+          "description": "Text to send",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendMessage"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessSendTemplate"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stable/open/customers/send-attachment-message": {
+      "post": {
+        "description": "Sends an attachment to a MyAlice customer in any platform",
+        "requestBody": {
+          "description": "Attachment to send",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendAttachment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessSendTemplate"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/stable/open/whatsapp/get-platform-list": {
       "get": {
         "description": "Get the list of whatsapp platform associated with a MyAlice team",
@@ -287,7 +380,65 @@
           }
         }
       },
+      "SendMessage": {
+        "required": [
+          "customer_id",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "description": "The Id of the customer in MyAlice, can be found in MyAlice Dashboard or API/Webhook call",
+            "type": "string",
+            "example": "1022"
+          },
+          "text": {
+            "description": "Text message to be sent",
+            "type": "string",
+            "example": "Hi"
+          }
+        }
+      },
+      "SendAttachment": {
+        "required": [
+          "customer_id",
+          "attachment_type",
+          "attachment_url"
+        ],
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "description": "The Id of the customer in MyAlice, can be found in MyAlice Dashboard or API/Webhook call",
+            "type": "string",
+            "example": "1022"
+          },
+          "attachment_type": {
+            "description": "Type of the attachment",
+            "type": "string",
+            "enum": [
+              "image",
+              "video",
+              "document"
+            ],
+            "example": "image"
+          },
+          "attachment_url": {
+            "description": "Publicly accessible URL of the attachment",
+            "type": "string",
+            "example": "https://myalice.com/logo.png"
+          }
+        }
+      },
       "SuccessSendTemplate": {
+        "required": [
+          "id",
+          "project_id",
+          "timestamp",
+          "function_name",
+          "message",
+          "status",
+          "extra"
+        ],
         "type": "object",
         "properties": {
           "id": {

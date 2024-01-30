@@ -59,6 +59,13 @@
             "rest-api/get-whatsapp-templates",
             "rest-api/get-whatsapp-template-details"
           ]
+        },
+        {
+          "group": "Message",
+          "pages": [
+            "rest-api/send-text-message",
+            "rest-api/send-attachment-message"
+          ]
         }
       ]
     },
