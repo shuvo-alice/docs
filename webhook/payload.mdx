@@ -7,7 +7,7 @@ description: 'Once an event triggers and you have a Webhook set up for that even
 Triggers when a ticket is created in MyAlice
 ```json
 {
-    "action": "ticket_created",
+    "action": "ticket.created",
     "customer": {
         "id": 15157748,
         "primary_id": "990b521c65a711edba291647a91fbbd9",
@@ -58,7 +58,7 @@ Triggers when a ticket is resolved in MyAlice
 ```json
 # TICKET RESOLVED
 {
-    "action": "ticket_resolved",
+    "action": "ticket.resolved",
     "customer": {
         "id": 15157748,
         "primary_id": "990b521c65a711edba291647a91fbbd9",
@@ -114,7 +114,7 @@ Triggers when a ticket is resolved in MyAlice
 Triggers when a ticket is tagged in MyAlice
 ```json
 {
-    "action": "ticket_tagged",
+    "action": "ticket.tagged",
     "customer": {
         "id": 15157748,
         "primary_id": "990b521c65a711edba291647a91fbbd9",
@@ -175,7 +175,7 @@ Triggers when a ticket is tagged in MyAlice
 Triggers when a ticket is reopened in MyAlice
 ```json
 {
-    "action": "ticket_reopened",
+    "action": "ticket.reopened",
     "customer": {
         "id": 15157748,
         "primary_id": "990b521c65a711edba291647a91fbbd9",
@@ -231,7 +231,7 @@ Triggers when a ticket is reopened in MyAlice
 Triggers when a customer is created in MyAlice
 ```json
 {
-    "action": "customer_created",
+    "action": "customer.created",
     "customer": {
         "id": 15157748,
         "primary_id": "990b521c65a711edba291647a91fbbd9",
@@ -264,5 +264,190 @@ Triggers when a customer is created in MyAlice
         "name": "Alice Labs"
     },
     "ticket": {}
+}
+```
+
+## Message Sent
+Triggers when a WhatsApp Message is sent to a Phone Number by WhatsApp
+```json
+{
+    "action": "message.sent",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {},
+    "message": {
+        "cid": "wamid.HBgLMTY1MDM4Nzk0MzkVAgARGBJGODlDQjZBNjUxMUQ5NEU0MEUA",
+        "timestamp": "1686591922",
+        "error": [] 
+    }
+}
+```
+
+## Message Delivered
+Triggers when a WhatsApp Message is delivered to a Phone Number by WhatsApp
+```json
+{
+    "action": "message.delivered",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {},
+    "message": {
+        "cid": "wamid.HBgLMTY1MDM4Nzk0MzkVAgARGBJGODlDQjZBNjUxMUQ5NEU0MEUA",
+        "timestamp": "1686591922",
+        "error": [] 
+    }
+}
+```
+
+## Message Read
+Triggers when a WhatsApp Message is read to a Phone Number by WhatsApp
+```json
+{
+    "action": "message.read",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {},
+    "message": {
+        "cid": "wamid.HBgLMTY1MDM4Nzk0MzkVAgARGBJGODlDQjZBNjUxMUQ5NEU0MEUA",
+        "timestamp": "1686591922",
+        "error": [] 
+    }
+}
+```
+
+## Message Failed
+Triggers when a WhatsApp Message is failed to send to a Phone Number by WhatsApp
+```json
+{
+    "action": "message.failed",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {},
+    "message": {
+        "cid": "wamid.HBgLMTY1MDM4Nzk0MzkVAgARGBJGODlDQjZBNjUxMUQ5NEU0MEUA",
+        "timestamp": "1686591922",
+        "error": [
+            {
+                "code": 131026,
+                "title": "Receiver is incapable of receiving this message"
+            }
+        ]
+    }
 }
 ```
