@@ -55,6 +55,7 @@
           "group": "WhatsApp",
           "pages": [
             "rest-api/send-whatsapp-template",
+            "rest-api/send-whatsapp-template-v2",
             "rest-api/get-whatsapp-channels",
             "rest-api/get-whatsapp-templates",
             "rest-api/get-whatsapp-template-details"

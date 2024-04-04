@@ -67,6 +67,74 @@
         }
       }
     },
+    "/stable/open/whatsapp/send-template": {
+      "post": {
+        "description": "Sends a per-approved template message to WhatsApp (with File support)",
+        "requestBody": {
+          "description": "WhatsApp Template to send",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/SendTemplateV2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessSendTemplateV2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauth"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/stable/open/customers/send-text-message": {
       "post": {
         "description": "Sends a text message to a MyAlice customer in any platform",
@@ -380,6 +448,75 @@
           }
         }
       },
+      "SendTemplateV2": {
+        "required": [
+          "template_id",
+          "channel_id",
+          "customer_phone"
+        ],
+        "type": "object",
+        "properties": {
+          "file": {
+            "description": "File to send",
+            "type": "string",
+            "format": "binary"
+          },
+          "template_id": {
+            "description": "The Id of the Template, can be found in MyAlice Dashboard",
+            "type": "string",
+            "example": "102323213"
+          },
+          "channel_id": {
+            "description": "The Id of the WhatsApp Channel, can be found in MyAlice Dashboard",
+            "type": "string",
+            "example": "1022"
+          },
+          "customer_phone": {
+            "description": "Customer phone with country code",
+            "type": "string",
+            "example": "+628123456789"
+          },
+          "body_vars": {
+            "description": "Key-pair values of the variables in the template body",
+            "type": "object",
+            "properties": {
+              "1": {
+                "description": "Atttribute in the Template",
+                "type": "string",
+                "example": "John Doe"
+              }
+            }
+          },
+          "button_vars": {
+            "description": "Key-pair values of the variables in the template buttons",
+            "type": "object",
+            "properties": {
+              "1": {
+                "description": "Atttribute in the Template",
+                "type": "string",
+                "example": "Home"
+              }
+            }
+          },
+          "header_type": {
+            "description": "Key-pair values of the variables in the template buttons",
+            "type": "string",
+            "enum": ["none", "text", "document", "image", "video"],
+            "example": "document"
+          },
+          "customer_attributes": {
+            "description": "Key-pair values of the customer variables to be stored against that customer",
+            "type": "object",
+            "properties": {
+              "1": {
+                "description": "Atttribute in the Template",
+                "type": "string",
+                "example": "John Doe"
+              }
+            }
+          }
+        }
+      },
       "SendMessage": {
         "required": [
           "customer_id",
@@ -524,6 +661,27 @@
                     }
                   }
                 }
+              }
+            }
+          }
+        }
+      },
+      "SuccessSendTemplateV2": {
+        "required": [
+          "success",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "example": "ongoing"
               }
             }
           }
