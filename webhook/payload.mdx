@@ -451,3 +451,180 @@ Triggers when a WhatsApp Message is failed to send to a Phone Number by WhatsApp
     }
 }
 ```
+
+## Message Read
+Triggers when a WhatsApp Message is read to a Phone Number by WhatsApp
+```json
+{
+    "action": "message.read",
+    "customer": {
+        "id": 15157748,
+        "primary_id": "990b521c65a711edba291647a91fbbd9",
+        "avatar": null,
+        "first_name": "Anonymous",
+        "last_name": "User",
+        "full_name": "Shuvo",
+        "gender": "",
+        "timezone": null,
+        "locale": "",
+        "language": "",
+        "phone": "",
+        "email": "shuvo@myalice.ai",
+        "created_at": "1668600601",
+        "last_message_text": "ticket",
+        "last_message_time": "1670078420",
+        "city": "Dhaka",
+        "region": "Dhaka",
+        "country": "Bangladesh",
+        "ip_address": "103.95.98.102",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    },
+    "channel": {
+        "id": 12570,
+        "type": "livechat_messenger",
+        "name": "MyAlice Live Support"
+    },
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "ticket": {},
+    "message": {
+        "cid": "wamid.HBgLMTY1MDM4Nzk0MzkVAgARGBJGODlDQjZBNjUxMUQ5NEU0MEUA",
+        "timestamp": "1686591922",
+        "error": [] 
+    }
+}
+```
+
+## Form Entry Created
+Triggers when a MyAlice form entry is created
+```json
+{
+    "action": "form.entry.created",
+    "customer": {},
+    "team": {
+        "id": 343,
+        "name": "Alice Labs"
+    },
+    "form": {
+        "id": 1288,
+        "title": "survey",
+        "type": "inventory"
+    },
+    "admin": {
+        "id": 766,
+        "username": "fahad@myalice.ai",
+        "email": "fahad@myalice.ai"
+    },
+    "entry": {
+        "admin": null,
+        "is_public": false,
+        "customer_id": null,
+        "form_id": 1288,
+        "form_data": [
+            {
+                "lab_id": 1288,
+                "source": "admin",
+                "creator_id": 766,
+                "created_by": "fahad@myalice.ai",
+                "created_at": 1719909862,
+                "name": "Test Username",
+                "phone": "01890909080",
+                "id": "6683bde6abd0cbdb92609bdf",
+                "mongo_timestamp": 1719909862
+            }
+        ]
+    }
+}
+```
+
+## Form Entry Updated
+Triggers when a MyAlice form entry is updated
+```json
+{
+    "action": "form.entry.updated",
+    "customer": {},
+    "team": {
+        "id": 375,
+        "name": "Stage QA"
+    },
+    "form": {
+        "id": 1288,
+        "title": "survey",
+        "type": "inventory"
+    },
+    "admin": {
+        "id": 766,
+        "username": "fahad@myalice.ai",
+        "email": "fahad@myalice.ai"
+    },
+    "entry": {
+        "admin": null,
+        "is_public": false,
+        "customer_id": null,
+        "form_id": 1288,
+        "form_data": [
+            {
+                "id": "6683bde6abd0cbdb92609bdf",
+                "source": null,
+                "creator_id": null,
+                "created_by": null,
+                "created_at": null,
+                "changes": {
+                    "phone": {
+                        "from": "01890909080",
+                        "to": "01890909081"
+                    }
+                },
+                "last_updated_at": 1719909907,
+                "last_updated_by": "fahad@myalice.ai",
+                "phone": "01890909081"
+            }
+        ]
+    }
+}
+```
+
+## Form Entry Deleted
+Triggers when a MyAlice form entry is deleted
+```json
+{
+    "action": "form.entry.deleted",
+    "customer": {},
+    "team": {
+        "id": 375,
+        "name": "Stage QA"
+    },
+    "form": {
+        "id": 1288,
+        "title": "survey",
+        "type": "inventory"
+    },
+    "admin": {
+        "id": 766,
+        "username": "fahad@myalice.ai",
+        "email": "fahad@myalice.ai"
+    },
+    "entry": {
+        "admin": null,
+        "is_public": false,
+        "customer_id": null,
+        "form_id": 1288,
+        "form_data": [
+            {
+                "lab_id": 1288,
+                "source": "admin",
+                "creator_id": 766,
+                "created_by": "fahad@myalice.ai",
+                "created_at": 1719909862,
+                "name": "Test Username",
+                "phone": "01890909081",
+                "last_updated_at": 1719909907,
+                "last_updated_by": "fahad@myalice.ai",
+                "id": "6683bde6abd0cbdb92609bdf",
+                "mongo_timestamp": 1719909862
+            }
+        ]
+    }
+}
